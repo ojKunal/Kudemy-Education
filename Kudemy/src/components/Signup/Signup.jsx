@@ -13,12 +13,15 @@ const Signup = () => {
     const val = e.target.value;
     setInput((values) => ({ ...values, [Name]: val }));
   };
+  const [error,setError] = useState("");
 
   const handleSubmit = (e) => {
+    if(!input.name || !input.email || !input.password) {
+      setError("Fill All fields");
+      return;
+    }
+    setError("");
     e.preventDefault();
-    const val = e.target.email.value;
-    console.log(val);
-    console.log("123");
     console.log(input);
   };
   return (
@@ -61,6 +64,9 @@ const Signup = () => {
               onChange={handleChange}
               className="bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200"
             />
+          </div>
+          <div className="flex justify-center mb-2 text-red-900">
+            {error}
           </div>
 
           <div className="mb-5">
